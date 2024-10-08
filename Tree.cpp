@@ -40,7 +40,19 @@ void Tree<T>::inorder(Node<T>* parentNode)
 }
 
 template <typename T>
-void Tree<T>::push(T data)
+void Tree<T>::postorder(Node<T>* parentNode)
+{
+    if(parentNode != nullptr)
+    {
+        postorder(parentNode->leftChild);
+        postorder(parentNode->rightChild);
+        std::cout << parentNode->data << ' ';
+    }
+}
+
+
+template <typename T>
+void Tree<T>::push(const T& data)
 {
     push(root, data);
 }
@@ -48,8 +60,20 @@ void Tree<T>::push(T data)
 template <typename T>
 void Tree<T>::print()
 {
-    inorder(root);
+    postorder(root);
 }
 
+template <typename T>
+void Tree<T>::output(T &data)
+{
+    std::cout << data;
+}
+
+template <typename T>
+void Tree<T>::inorder()
+{
+    inorder([](T& data)->void{std::cout << data;});
+    inorder(&output, *this);
+}
 
 #endif
