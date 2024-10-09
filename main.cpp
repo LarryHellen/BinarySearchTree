@@ -27,7 +27,7 @@ int main()
      * model (has text), view (has font, cursor animate), contoller (sets input, gives to view)
      */
 
-    t.print();
+    t.inorder();
 
     return 0;
 }

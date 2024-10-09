@@ -26,8 +26,6 @@ private:
     void postorder(Node<T>* &parent, void (*f)(T& data));
     void postorder(Node<T>* &parent, void (*f)(T& data)) const;
 
-    void clearTree();
-
     void output(T &data);
 
     Node<T>* createNode(const T& data);
@@ -41,6 +39,7 @@ public:
     Tree<T>* operator=(const Tree<T>& tree);
 
     void push(const T& data);
+    void clearTree();
 
     void inorder();
     void inorder(void (*f)(T& data));
@@ -61,7 +60,7 @@ public:
     void postorder(void (U::*f)(T& data), U &obj);
 
     template <typename U>
-    friend std::ostream& operator<<(std::ostream& out, const Tree<U>& list);
+    friend std::ostream& operator<<(std::ostream& out, const Tree<U>& tree);
 };
 
 #include "Tree.cpp"
