@@ -27,8 +27,16 @@ private:
     void postorder(Node<T>* &parent, void (*f)(T& data)) const;
 
     void output(T &data);
+    void insertData(const T& data);
 
     Node<T>* createNode(const T& data);
+
+    void remove(Node<T>* &node, const T& data);
+    void removeNode(Node<T>* &node);
+    Node<T>* findSuccessor(Node<T>* node);
+    void clearTree(Node<T>* &node);
+
+
 public:
     Tree();
     Tree(T rootData);
@@ -36,7 +44,7 @@ public:
     Tree(const Tree<T>& tree);
     ~Tree();
 
-    Tree<T>* operator=(const Tree<T>& tree);
+    Tree<T>& operator=(const Tree<T>& tree);
 
     void push(const T& data);
     void clearTree();
@@ -61,6 +69,9 @@ public:
 
     template <typename U>
     friend std::ostream& operator<<(std::ostream& out, const Tree<U>& tree);
+
+    void remove(const T& data);
+
 };
 
 #include "Tree.cpp"

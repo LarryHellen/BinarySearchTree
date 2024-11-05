@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "Tree.h"
 
 int main()
@@ -17,17 +16,18 @@ int main()
     t.push(16);
     t.push(32);
 
-    //is this the correct post-order:
-    //0 2.156 5 3.14 8 32 16 10 5 2
 
-    /*
-     * model view control
-     * box
-     * cursor
-     * model (has text), view (has font, cursor animate), contoller (sets input, gives to view)
-     */
+    //each one fails to Process finished with exit code 139 (interrupted by signal 11:SIGSEGV)
 
+    std::cout << "Inorder:" << std::endl;
     t.inorder();
+
+    std::cout << "\nPreorder Traversal:" << std::endl;
+    t.preorder();
+
+    std::cout << "\nPostorder Traversal:" << std::endl;
+    t.postorder();
+    std::cout << std::endl;
 
     return 0;
 }
