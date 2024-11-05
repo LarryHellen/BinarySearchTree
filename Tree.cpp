@@ -119,9 +119,9 @@ void Tree<T>::inorder(Node<T>* &parent, void (*f)(T& data))
 {
     if(parent != nullptr)
     {
-        inorder(parent->leftChild);
+        inorder(parent->leftChild, f);
         f(parent->data);
-        inorder(parent->rightChild);
+        inorder(parent->rightChild, f);
     }
 }
 
@@ -130,9 +130,9 @@ void Tree<T>::inorder(Node<T>* &parent, void (*f)(T& data)) const
 {
     if(parent != nullptr)
     {
-        inorder(parent->leftChild);
+        inorder(parent->leftChild, f);
         f(parent->data);
-        inorder(parent->rightChild);
+        inorder(parent->rightChild, f);
     }
 }
 
@@ -142,8 +142,8 @@ void Tree<T>::preorder(Node<T>* &parent, void (*f)(T& data))
     if(parent != nullptr)
     {
         f(parent->data);
-        preorder(parent->leftChild);
-        preorder(parent->rightChild);
+        preorder(parent->leftChild, f);
+        preorder(parent->rightChild, f);
     }
 }
 
@@ -153,8 +153,8 @@ void Tree<T>::preorder(Node<T>* &parent, void (*f)(T& data)) const
     if(parent != nullptr)
     {
         f(parent->data);
-        inorder(parent->leftChild);
-        inorder(parent->rightChild);
+        preorder(parent->leftChild, f);
+        preorder(parent->rightChild, f);
     }
 }
 
@@ -164,8 +164,8 @@ void Tree<T>::postorder(Node<T>* &parent, void (*f)(T& data))
 {
     if(parent != nullptr)
     {
-        inorder(parent->leftChild);
-        inorder(parent->rightChild);
+        postorder(parent->leftChild, f);
+        postorder(parent->rightChild, f);
         f(parent->data);
     }
 }
@@ -175,8 +175,8 @@ void Tree<T>::postorder(Node<T>* &parent, void (*f)(T& data)) const
 {
     if(parent != nullptr)
     {
-        inorder(parent->leftChild);
-        inorder(parent->rightChild);
+        postorder(parent->leftChild, f);
+        postorder(parent->rightChild, f);
         f(parent->data);
     }
 }
@@ -203,14 +203,13 @@ void Tree<T>::insertData(const T& data)
 template <typename T>
 void Tree<T>::inorder()
 {
-
-    inorder(&Tree::output, *this);
+    inorder(&Tree::output);
 }
 
 template<typename T>
 void Tree<T>::inorder(void (*f)(T& data))
 {
-    inorder(root, (void (*)(void*))f);
+    inorder(root, f);
 }
 
 template<typename T>
@@ -229,19 +228,19 @@ void Tree<T>::inorder(void (U::*f)(T& data), U &obj)
 template<typename T>
 void Tree<T>::preorder()
 {
-    preorder(&Tree::output, *this);
+    preorder(&Tree::output);
 }
 
 template<typename T>
 void Tree<T>::preorder(void(*f)(T &data))
 {
-    preorder(root, (void (*)(void*))f);
+    preorder(root, f);
 }
 
 template<typename T>
 void Tree<T>::preorder(void(*f)(T &data)) const
 {
-    preorder(root, (void (*)(void*))f);
+    preorder(root, f);
 }
 
 template<typename T>
@@ -254,19 +253,19 @@ void Tree<T>::preorder(void(U::*f)(T &data), U &obj)
 template<typename T>
 void Tree<T>::postorder()
 {
-    postorder(&Tree::output, *this);
+    postorder(&Tree::output);
 }
 
 template<typename T>
 void Tree<T>::postorder(void(*f)(T &data))
 {
-    postorder(root, (void (*)(void*))f);
+    postorder(root, f);
 }
 
 template<typename T>
 void Tree<T>::postorder(void(*f)(T &data)) const
 {
-    postorder(root, (void (*)(void*))f);
+    postorder(root, f);
 }
 
 template<typename T>

@@ -26,7 +26,7 @@ private:
     void postorder(Node<T>* &parent, void (*f)(T& data));
     void postorder(Node<T>* &parent, void (*f)(T& data)) const;
 
-    void output(T &data);
+    static void output(T &data);
     void insertData(const T& data);
 
     Node<T>* createNode(const T& data);

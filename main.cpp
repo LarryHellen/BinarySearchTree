@@ -29,5 +29,12 @@ int main()
     t.postorder();
     std::cout << std::endl;
 
+    t.clearTree();
+
+    t.push(1);
+    t.push(2);
+
+    t.inorder();
+
     return 0;
 }
